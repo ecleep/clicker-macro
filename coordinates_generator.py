@@ -4,9 +4,11 @@
 
 from pynput import mouse
 import os, sys
+import time
 
 # Define empty array
 arrCoordinates = []
+prevTime = time.time()
 
 # Clear the terminal
 def clear():
@@ -14,6 +16,8 @@ def clear():
 
 # Detect position of mouse when clicked
 def on_click(x, y, button, pressed):
+    global prevTime
+
     # Detect when mouse is clicked
     if pressed:
 
@@ -24,17 +28,22 @@ def on_click(x, y, button, pressed):
 
             # Write coordinates to coordinates.txt
             with open(filePath, 'w') as f:
-                f.write('\n'.join('%s,%s' % x for x in arrCoordinates))
+                f.write('\n'.join('%s,%s,%s' % x for x in arrCoordinates))
                 print('Coordinates saved at ' + filePath)
 
             # Stop listener
             return False
-        
+
         # Print coordinates of cursor when clicked
         print(x, y)
 
+        currTime = time.time()
+        timeDiff = str(round((currTime - prevTime),2))
+        prevTime = currTime
+        print(timeDiff)
+
         # Define coordinates in tuple and append to array
-        coordinates = (x,y)
+        coordinates = (x,y,timeDiff)
         arrCoordinates.append(coordinates)
 
 # Main function

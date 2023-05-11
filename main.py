@@ -5,16 +5,13 @@
 import pyautogui
 import os, sys
 
-# Default duration for mouse movement is 1 sec (Feel free to change)
-DURATION = 1
-
 # Clear the terminal
 def clear():
     os.system('cls')
 
 # Move to x,y coordinates and click
-def moveClick(x,y):
-    pyautogui.click(x,y,duration=DURATION)
+def moveClick(x,y,t):
+    pyautogui.click(x,y,duration=t)
 
 # Main function
 def main():
@@ -28,8 +25,8 @@ def main():
     # Read each element in 'lines'
     for line in lines:
         # Remove '\n'
-        x,y = line.replace('\n','').split(',')
-        moveClick(int(x),int(y))
+        x,y,t = line.replace('\n','').split(',')
+        moveClick(int(x),int(y),float(t))
 
 
 if __name__ == '__main__':

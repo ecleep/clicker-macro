@@ -24,7 +24,7 @@ def main():
 
     # Read each element in 'lines'
     for line in lines:
-        # Remove '\n'
+        # Remove '\n' and split values into respective variables
         x,y,t = line.replace('\n','').split(',')
         moveClick(int(x),int(y),float(t))
 

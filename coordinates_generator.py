@@ -37,6 +37,7 @@ def on_click(x, y, button, pressed):
         # Print coordinates of cursor when clicked
         print(x, y)
 
+        # Get time in between current click and previous click
         currTime = time.time()
         timeDiff = str(round((currTime - prevTime),2))
         prevTime = currTime
